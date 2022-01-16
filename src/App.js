@@ -5,12 +5,19 @@ import { SingleColor } from './SingleColor';
 
 export const App = () => {
   const [color, setColor] = useState('');
-  const [error, SerError] = useState(false);
+  const [error, setError] = useState(false);
   const [list, setList] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('hello');
+
+    try {
+      let colors = new Values(color).all(10);
+      console.log(colors);
+    } catch (error) {
+      setError(true);
+      console.log(error);
+    }
   };
 
   return (
@@ -23,6 +30,7 @@ export const App = () => {
             value={color}
             onChange={(e) => setColor(e.target.value)}
             placeholder="#f15025"
+            className={`${error ? 'error' :  null}`} // class tha show red border on input text when invalid value 
           />
           <button className="btn" type="submit">
             Submit

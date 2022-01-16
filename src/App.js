@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Values from 'values.js';
 import { SingleColor } from './SingleColor';
 
+import './App.css';
+
 export const App = () => {
   const [color, setColor] = useState('');
   const [error, setError] = useState(false);
@@ -22,15 +24,15 @@ export const App = () => {
 
   return (
     <>
-      <section className="container">
-        <h3>Color Generator</h3>
+      <section className="bg-gray-900 flex justify-center">
+        <h3 className="">Color Generator</h3>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={color}
             onChange={(e) => setColor(e.target.value)}
             placeholder="#f15025"
-            className={`${error ? 'error' :  null}`} // class tha show red border on input text when invalid value 
+            className={`${error ? 'color:red' :  null}`} // class tha show red border on input text when invalid value 
           />
           <button className="btn" type="submit">
             Submit

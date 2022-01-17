@@ -15,6 +15,7 @@ export const App = () => {
 
     try {
       let colors = new Values(color).all(10);
+      setList(colors);
       console.log(colors);
     } catch (error) {
       setError(true);
@@ -24,23 +25,33 @@ export const App = () => {
 
   return (
     <>
-      <section className="bg-gray-900 flex justify-center">
-        <h3 className="">Color Generator</h3>
+      <section className="container flex justify-self-start m-4">
+        <h3 className="font-semibold first-letter:italic mt-2 mr-4">
+          Color Generator
+        </h3>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={color}
             onChange={(e) => setColor(e.target.value)}
             placeholder="#f15025"
-            className={`${error ? 'color:red' :  null}`} // class tha show red border on input text when invalid value 
+            className={`peer-invalid:text-lg border-2 p-2 rounded-lg border-8${
+              error ? 'color:red' : null
+            }`} // class tha show red border on input text when invalid value
           />
-          <button className="btn" type="submit">
+          <button
+            className="bg-sky-600 hover:bg-sky-700 text-cyan-50 rounded-lg p-2 ml-2"
+            type="submit"
+          >
             Submit
           </button>
         </form>
       </section>
       <section className="colors">
-        <h4>list goes here</h4>
+        {list.map((color, index) => {
+          console.log(color);
+          return <SingleColor key={index} {...color} index={index} />;
+        })}
       </section>
     </>
   );

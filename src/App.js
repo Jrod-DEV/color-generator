@@ -35,9 +35,7 @@ export const App = () => {
             value={color}
             onChange={(e) => setColor(e.target.value)}
             placeholder="#f15025"
-            className={`peer-invalid:text-lg border-2 p-2 rounded-lg border-8${
-              error ? 'color:red' : null
-            }`} // class tha show red border on input text when invalid value
+            className={`${error ? 'error' : null}`} // class tha show red border on input text when invalid value
           />
           <button
             className="bg-sky-600 hover:bg-sky-700 text-cyan-50 rounded-lg p-2 ml-2"

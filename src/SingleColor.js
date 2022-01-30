@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { rgbToHex } from './utils';
 
-export const SingleColor = ({ rgb, weight, index }) => {
+export const SingleColor = ({ rgb, weight, index, hexColor }) => {
+  console.log(hexColor);
   const [alert, setAlert] = useState(false);
   const bcg = rgb.join(',');
-  console.log(bcg);
+  const hex = rgbToHex(...rgb);
+  const hexValue = `#${hexColor}`;
   return (
-    <article className={`color`} style={{ backgroundColor: `rgb(${bcg})` }}>
-      { 'color' }
+    <article
+      className={`color ${index > 10 && 'color-light'}`}
+      style={{ backgroundColor: `rgb(${bcg})` }}
+    >
+      <p className={'percent-value'}>{weight}%</p>
+      <p className={'color-value'}>{hexValue}</p>
     </article>
   );
 };
